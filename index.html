@@ -17,10 +17,20 @@
                 padding-top: 50px;
                 padding-bottom: 20px;
             }
+			
+			.tooth {
+				width: 35px;
+			}
         </style>
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
 
+		<style>
+			/*#canvas {
+				background: url('teeth/b6.png');
+			}*/
+		</style>
+		
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
     <body>
@@ -33,18 +43,66 @@
       <div class="row">
         <div class="col-md-12">
           <h2>Mouth Map</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <table class="table table-bordered">
+			<tr>
+				<td><img class="tooth" src="teeth/t1.png"></img></td>
+				<td><img class="tooth" src="teeth/t2.png"></img></td>
+				<td><img class="tooth" src="teeth/t3.png"></img></td>
+				<td><img class="tooth" src="teeth/t4.png"></img></td>
+				<td><img class="tooth" src="teeth/t5.png"></img></td>
+				<td><img class="tooth" src="teeth/t6.png"></img></td>
+				<td><img class="tooth" src="teeth/t7.png"></img></td>
+				<td><img class="tooth" src="teeth/t8.png"></img></td>
+				<td><img class="tooth" src="teeth/t9.png"></img></td>
+				<td><img class="tooth" src="teeth/t10.png"></img></td>
+				<td><img class="tooth" src="teeth/t11.png"></img></td>
+				<td><img class="tooth" src="teeth/t12.png"></img></td>
+				<td><img class="tooth" src="teeth/t13.png"></img></td>
+				<td><img class="tooth" src="teeth/t14.png"></img></td>
+				<td><img class="tooth" src="teeth/t15.png"></img></td>
+				<td><img class="tooth" src="teeth/t16.png"></img></td>
+			</tr>
+			<tr>
+				<td><img class="tooth" src="teeth/b1.png"></img></td>
+				<td><img class="tooth" src="teeth/b2.png"></img></td>
+				<td><img class="tooth" src="teeth/b3.png"></img></td>
+				<td><img class="tooth" src="teeth/b4.png"></img></td>
+				<td><img class="tooth" src="teeth/b5.png"></img></td>
+				<td><img class="tooth" src="teeth/b6.png"></img></td>
+				<td><img class="tooth" src="teeth/b7.png"></img></td>
+				<td><img class="tooth" src="teeth/b8.png"></img></td>
+				<td><img class="tooth" src="teeth/b9.png"></img></td>
+				<td><img class="tooth" src="teeth/b10.png"></img></td>
+				<td><img class="tooth" src="teeth/b11.png"></img></td>
+				<td><img class="tooth" src="teeth/b12.png"></img></td>
+				<td><img class="tooth" src="teeth/b13.png"></img></td>
+				<td><img class="tooth" src="teeth/b14.png"></img></td>
+				<td><img class="tooth" src="teeth/b15.png"></img></td>
+				<td><img class="tooth" src="teeth/b16.png"></img></td>
+			</tr>
+		  </table>
         </div>
+		<div class="col-md-12">
+          <h2>Tooth</h2>
+		  
+		</div>
       </div>
+	  
+	  <div class="row">
+	  <button id="btnDecay">Decay</button>
+			<button id="btnFilling">Filling</button>
+	  </div>
+		<div class="row">
+			<canvas id="canvas" width="90" height="368"  style="border: 1px solid black"></canvas>
+		</div>
 
-
+		
+		
+		
 
     </div> <!-- /container -->        
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-
-        <script src="js/vendor/bootstrap.min.js"></script>
-
-        <script src="js/main.js"></script>
+    <script src="js/vendor/jquery-1.11.2.min.js"></script>
+	<script src="js/vendor/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
     </body>
 </html>
