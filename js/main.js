@@ -5,10 +5,10 @@ var selectedColour = colorDecay;
 var clickColor = new Array();
 var selectedTooth;
 
-var context = document.getElementById('canvas').getContext("2d");
-var canvas = document.getElementById('canvas');
+var editorContext = document.getElementById('toothEditorCanvas').getContext("2d");
+var editorCanvas = document.getElementById('toothEditorCanvas');
 
-$('#canvas').mousedown(function (e) {
+$('#toothEditorCanvas').mousedown(function (e) {
   var mouseX = e.pageX - this.offsetLeft;
   var mouseY = e.pageY - this.offsetTop;
 
@@ -17,23 +17,23 @@ $('#canvas').mousedown(function (e) {
   redraw();
 });
 
-$('#canvas').mousemove(function (e) {
+$('#toothEditorCanvas').mousemove(function (e) {
   if (paint) {
     addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
     redraw();
   }
 });
 
-$('#canvas').mouseup(function (e) {
+$('#toothEditorCanvas').mouseup(function (e) {
   paint = false;
 });
 
-$('#canvas').mouseleave(function (e) {
+$('#toothEditorCanvas').mouseleave(function (e) {
   paint = false;
 });
 
 
-$('#canvas').on('touchstart', function (e) {
+$('#toothEditorCanvas').on('touchstart', function (e) {
   var mouseX = e.pageX - this.offsetLeft;
   var mouseY = e.pageY - this.offsetTop;
 
@@ -42,14 +42,14 @@ $('#canvas').on('touchstart', function (e) {
   redraw();
 });
 
-$('#canvas').on('touchmove', function (e) {
+$('#toothEditorCanvas').on('touchmove', function (e) {
   if (paint) {
     addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
     redraw();
   }
 });
 
-$('#canvas').on('touchend', function (e) {
+$('#toothEditorCanvas').on('touchend', function (e) {
   paint = false;
 });
 
@@ -71,45 +71,43 @@ function addClick(x, y, dragging) {
 function redraw() {
   //context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
 
-  context.strokeStyle = "#df4b26";
-  context.lineJoin = "round";
-  context.lineWidth = 5;
+  editorContext.strokeStyle = "#df4b26";
+  editorContext.lineJoin = "round";
+  editorContext.lineWidth = 5;
 
   for (var i = 0; i < clickX.length; i++) {
-    context.beginPath();
+    editorContext.beginPath();
     if (clickDrag[i] && i) {
-      context.moveTo(clickX[i - 1], clickY[i - 1]);
+      editorContext.moveTo(clickX[i - 1], clickY[i - 1]);
     } else {
-      context.moveTo(clickX[i] - 1, clickY[i]);
+      editorContext.moveTo(clickX[i] - 1, clickY[i]);
     }
-    context.lineTo(clickX[i], clickY[i]);
-    context.closePath();
-    context.strokeStyle = clickColor[i];
-    context.stroke();
+    editorContext.lineTo(clickX[i], clickY[i]);
+    editorContext.closePath();
+    editorContext.strokeStyle = clickColor[i];
+    editorContext.stroke();
   }
 }
 
 function canvas_clear() {
-  context.clearRect(0, 0, canvas.width, canvas.height);
+  editorContext.clearRect(0, 0, editorCanvas.width, editorCanvas.height);
   clickX = new Array();
   clickY = new Array();
   clickDrag = new Array();
 }
 
 function export_png() {
-  return context.canvas.toDataURL();
+  return editorContext.canvas.toDataURL();
 }
 
 function loadCanvas(dataURL, id) {
-  var context = document.getElementById(id).getContext('2d');
+  var ctx = document.getElementById(id).getContext('2d');
 
   // load image from data url
   var imageObj = new Image();
   imageObj.onload = function () {
-    context.drawImage(this, 0, 0);
+    ctx.drawImage(this, 0, 0);
   };
-
-  // context.scale(0.63, 0.63);
 
   imageObj.src = dataURL;
 }
@@ -123,14 +121,11 @@ $("#btnFilling").click(function () {
 });
 
 $(".tooth").click(function () {
-
-
   if (selectedTooth != undefined) {
     // Push the current #canvas back into the mouth
     loadCanvas(export_png(), $(selectedTooth).attr("id"));
-
-
   }
+
   $(selectedTooth).removeClass("selectedTooth");
   $(this).addClass("selectedTooth");
 
@@ -144,7 +139,7 @@ $(".tooth").click(function () {
 
   var imageObj = new Image();
   imageObj.onload = function () {
-    context.drawImage(this, 0, 0);
+    editorContext.drawImage(this, 0, 0);
   };
 
   imageObj.src = imgUrl;
