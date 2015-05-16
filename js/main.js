@@ -93,7 +93,7 @@ function loadCanvas(dataURL, id) {
     context.drawImage(this, 0, 0);
   };
 
-  context.scale(0.63, 0.63);
+  // context.scale(0.63, 0.63);
 
   imageObj.src = dataURL;
 }
@@ -109,47 +109,75 @@ $("#btnFilling").click(function() {
 $(".tooth").click(function() {
 	
 	if (this_tooth != undefined) {
+    // Push the current #canvas back into the mouth
 		loadCanvas(export_png(), $(this_tooth).attr("id"));
 	}
-	
-	canvas_clear();
 
-	var c = document.getElementById($(this).attr("id"));
-	var ctx = c.getContext("2d");
-	
-	var imgUrl = ctx.canvas.toDataURL();
-	
-	var imageObj = new Image();
+  // Copy whatever we've just clicked on into #canvas
+  canvas_clear();
+
+  var c = document.getElementById($(this).attr("id"));
+  var ctx = c.getContext("2d");
+  
+  var imgUrl = ctx.canvas.toDataURL();
+  
+  var imageObj = new Image();
   imageObj.onload = function() {
     context.drawImage(this, 0, 0);
   };
 
-
-  imageObj.src = "teeth/"+$(this).attr("id")+".png";
+  //imageObj.src = "teeth/"+$(this).attr("id")+".png";
+  imageObj.src = imgUrl;
   
   this_tooth = this;
 });
 
-$(".tooth123").click(function() {
-	//alert(this.src);
+// $(".tooth123").click(function() {
+// 	//alert(this.src);
 
-	if (this_tooth != undefined) {
-		loadCanvas(export_png(), $(this_tooth).attr("id"));
-	}
+// 	if (this_tooth != undefined) {
+// 		loadCanvas(export_png(), $(this_tooth).attr("id"));
+// 	}
 
 
-	canvas_clear();
+// 	canvas_clear();
 
-	var name = "teeth/" + $(this).attr("id") + ".png";
+// 	var name = "teeth/" + $(this).attr("id") + ".png";
 
-	$("#canvas").css("background", "url("+name+")");
+// 	$("#canvas").css("background", "url("+name+")");
 	
-	
-	
-	
-	
-	
-	
-	
-	this_tooth = this;
+// 	this_tooth = this;
+// });
+
+function make_top_teeth(t) {
+    var c = document.getElementById("t"+t);
+    var ctx = c.getContext("2d");
+        
+    var imageObj = new Image();
+    imageObj.onload = function() {
+      ctx.drawImage(this, 0, 0);
+    };
+    imageObj.src = "teeth/t"+t+".png";
+}
+
+function make_bottom_teeth(b) {
+    var c = document.getElementById("b"+b);
+    var ctx = c.getContext("2d");
+        
+    var imageObj = new Image();
+    imageObj.onload = function() {
+      ctx.drawImage(this, 0, 0);
+    };
+    imageObj.src = "teeth/b"+b+".png";
+}
+
+$(document).ready(function(){
+
+   for (var t = 1; t <= 16; t++) {
+    make_top_teeth(t);
+    make_bottom_teeth(t);    
+   }
+
+
+
 });
