@@ -108,10 +108,15 @@ $("#btnFilling").click(function() {
 
 $(".tooth").click(function() {
 	
+	
 	if (this_tooth != undefined) {
     // Push the current #canvas back into the mouth
 		loadCanvas(export_png(), $(this_tooth).attr("id"));
+		
+		
 	}
+	$(this_tooth).removeClass("selectedTooth");
+	$(this).addClass("selectedTooth");
 
   // Copy whatever we've just clicked on into #canvas
   canvas_clear();
