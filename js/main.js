@@ -10,6 +10,7 @@ var curColor = colorDecay;
 var clickColor = new Array();
 
 var context = document.getElementById('canvas').getContext("2d");
+var canvas = document.getElementById('canvas');
 
 $('#canvas').mousedown(function(e){
   var mouseX = e.pageX - this.offsetLeft;
@@ -71,6 +72,12 @@ function redraw(){
   }
 }
 
+function canvas_clear() {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  clickX = new Array();
+  clickY = new Array();
+  clickDrag = new Array();
+}
 
 $("#btnDecay").click(function() {
 	curColor = colorDecay;
@@ -82,5 +89,6 @@ $("#btnFilling").click(function() {
 
 $(".tooth").click(function() {
 	//alert(this.src);
+  canvas_clear();
 	$("#canvas").css("background", "url("+this.src+")");
 });
