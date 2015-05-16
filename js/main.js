@@ -186,3 +186,8 @@ $(document).ready(function(){
 
 
 });
+
+$("#btnRemoveTooth").click(function() {
+	$(this_tooth).hide();
+});
+
