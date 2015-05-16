@@ -38,6 +38,28 @@ $('#canvas').mouseleave(function(e){
 });
 
 
+$('#canvas').on('touchstart',function(e){
+  var mouseX = e.pageX - this.offsetLeft;
+  var mouseY = e.pageY - this.offsetTop;
+    
+  paint = true;
+  addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
+  redraw();
+});
+
+$('#canvas').on('touchmove',function(e){
+  if(paint){
+    addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
+    redraw();
+  }
+});
+
+$('#canvas').on('touchend',function(e){
+  paint = false;
+});
+
+
+
 
 var clickX = new Array();
 var clickY = new Array();
