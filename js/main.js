@@ -53,7 +53,7 @@ function addClick(x, y, dragging)
 }
 
 function redraw(){
-  context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
+  //context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
   
   context.strokeStyle = "#df4b26";
   context.lineJoin = "round";
@@ -107,17 +107,49 @@ $("#btnFilling").click(function() {
 });
 
 $(".tooth").click(function() {
+	
+	if (this_tooth != undefined) {
+		loadCanvas(export_png(), $(this_tooth).attr("id"));
+	}
+	
+	canvas_clear();
+
+	var c = document.getElementById($(this).attr("id"));
+	var ctx = c.getContext("2d");
+	
+	var imgUrl = ctx.canvas.toDataURL();
+	
+	var imageObj = new Image();
+  imageObj.onload = function() {
+    context.drawImage(this, 0, 0);
+  };
+
+
+  imageObj.src = "teeth/"+$(this).attr("id")+".png";
+  
+  this_tooth = this;
+});
+
+$(".tooth123").click(function() {
 	//alert(this.src);
 
 	if (this_tooth != undefined) {
 		loadCanvas(export_png(), $(this_tooth).attr("id"));
 	}
-  
 
-  canvas_clear();
-  
-  var name = "teeth/" + $(this).attr("id") + ".png";
-  
-$("#canvas").css("background", "url("+name+")");
-  this_tooth = this;
+
+	canvas_clear();
+
+	var name = "teeth/" + $(this).attr("id") + ".png";
+
+	$("#canvas").css("background", "url("+name+")");
+	
+	
+	
+	
+	
+	
+	
+	
+	this_tooth = this;
 });
