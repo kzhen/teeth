@@ -8,6 +8,7 @@ var colorBrown = "#986928";
 
 var curColor = colorDecay;
 var clickColor = new Array();
+var this_tooth;
 
 var context = document.getElementById('canvas').getContext("2d");
 var canvas = document.getElementById('canvas');
@@ -79,6 +80,24 @@ function canvas_clear() {
   clickDrag = new Array();
 }
 
+function export_png() {
+  return context.canvas.toDataURL();
+}
+
+function loadCanvas(dataURL, this_canvas) {
+  var context = document.getElementById("t1").getContext('2d');
+
+  // load image from data url
+  var imageObj = new Image();
+  imageObj.onload = function() {
+    context.drawImage(this, 0, 0);
+  };
+
+  context.scale(0.39,0.39);
+
+  imageObj.src = dataURL;
+}
+
 $("#btnDecay").click(function() {
 	curColor = colorDecay;
 });
@@ -89,6 +108,10 @@ $("#btnFilling").click(function() {
 
 $(".tooth").click(function() {
 	//alert(this.src);
+
+  loadCanvas(export_png(), this_tooth);
+
   canvas_clear();
 	$("#canvas").css("background", "url("+this.src+")");
+  this_tooth = this;
 });
