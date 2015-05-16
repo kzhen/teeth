@@ -1,11 +1,9 @@
 var colorDecay = "#cb3594";
 var colorFilling = "#659b41";
-var colorYellow = "#ffcf33";
-var colorBrown = "#986928";
 
-var curColor = colorDecay;
+var selectedColour = colorDecay;
 var clickColor = new Array();
-var this_tooth;
+var selectedTooth;
 
 var context = document.getElementById('canvas').getContext("2d");
 var canvas = document.getElementById('canvas');
@@ -67,7 +65,7 @@ function addClick(x, y, dragging) {
   clickX.push(x);
   clickY.push(y);
   clickDrag.push(dragging);
-  clickColor.push(curColor);
+  clickColor.push(selectedColour);
 }
 
 function redraw() {
@@ -117,23 +115,23 @@ function loadCanvas(dataURL, id) {
 }
 
 $("#btnDecay").click(function () {
-  curColor = colorDecay;
+  selectedColour = colorDecay;
 });
 
 $("#btnFilling").click(function () {
-  curColor = colorFilling;
+  selectedColour = colorFilling;
 });
 
 $(".tooth").click(function () {
 
 
-  if (this_tooth != undefined) {
+  if (selectedTooth != undefined) {
     // Push the current #canvas back into the mouth
-    loadCanvas(export_png(), $(this_tooth).attr("id"));
+    loadCanvas(export_png(), $(selectedTooth).attr("id"));
 
 
   }
-  $(this_tooth).removeClass("selectedTooth");
+  $(selectedTooth).removeClass("selectedTooth");
   $(this).addClass("selectedTooth");
 
   // Copy whatever we've just clicked on into #canvas
@@ -149,28 +147,10 @@ $(".tooth").click(function () {
     context.drawImage(this, 0, 0);
   };
 
-  //imageObj.src = "teeth/"+$(this).attr("id")+".png";
   imageObj.src = imgUrl;
 
-  this_tooth = this;
+  selectedTooth = this;
 });
-
-// $(".tooth123").click(function() {
-// 	//alert(this.src);
-
-// 	if (this_tooth != undefined) {
-// 		loadCanvas(export_png(), $(this_tooth).attr("id"));
-// 	}
-
-
-// 	canvas_clear();
-
-// 	var name = "teeth/" + $(this).attr("id") + ".png";
-
-// 	$("#canvas").css("background", "url("+name+")");
-
-// 	this_tooth = this;
-// });
 
 function make_top_teeth(t) {
   var c = document.getElementById("t" + t);
@@ -178,7 +158,7 @@ function make_top_teeth(t) {
 
   var imageObj = new Image();
   imageObj.onload = function () {
-    ctx.drawImage(this, 0, 0);
+    ctx.drawImage(this, 0, 0, 35, 143);
   };
   imageObj.src = "teeth/t" + t + ".png";
 }
@@ -189,7 +169,7 @@ function make_bottom_teeth(b) {
 
   var imageObj = new Image();
   imageObj.onload = function () {
-    ctx.drawImage(this, 0, 0);
+    ctx.drawImage(this, 0, 0, 35, 143);
   };
   imageObj.src = "teeth/b" + b + ".png";
 }
@@ -200,12 +180,9 @@ $(document).ready(function () {
     make_top_teeth(t);
     make_bottom_teeth(t);
   }
-
-
-
 });
 
 $("#btnRemoveTooth").click(function () {
-  $(this_tooth).hide();
+  $(selectedTooth).hide();
 });
 
