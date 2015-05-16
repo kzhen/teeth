@@ -84,8 +84,8 @@ function export_png() {
   return context.canvas.toDataURL();
 }
 
-function loadCanvas(dataURL, this_canvas) {
-  var context = document.getElementById("t1").getContext('2d');
+function loadCanvas(dataURL, id) {
+  var context = document.getElementById(id).getContext('2d');
 
   // load image from data url
   var imageObj = new Image();
@@ -93,7 +93,7 @@ function loadCanvas(dataURL, this_canvas) {
     context.drawImage(this, 0, 0);
   };
 
-  context.scale(0.39,0.39);
+  context.scale(0.63, 0.63);
 
   imageObj.src = dataURL;
 }
@@ -109,7 +109,10 @@ $("#btnFilling").click(function() {
 $(".tooth").click(function() {
 	//alert(this.src);
 
-  loadCanvas(export_png(), this_tooth);
+	if (this_tooth != undefined) {
+		loadCanvas(export_png(), $(this_tooth).attr("id"));
+	}
+  
 
   canvas_clear();
   
