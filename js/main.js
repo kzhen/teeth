@@ -112,6 +112,9 @@ $(".tooth").click(function() {
   loadCanvas(export_png(), this_tooth);
 
   canvas_clear();
-	$("#canvas").css("background", "url("+this.src+")");
+  
+  var name = "teeth/" + $(this).attr("id") + ".png";
+  
+$("#canvas").css("background", "url("+name+")");
   this_tooth = this;
 });
