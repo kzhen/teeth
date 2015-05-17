@@ -1,22 +1,26 @@
+.selectedTooth {
+  border: 2px solid blue;
+}
 
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
 
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
+.tooth {
+}
 
+td {
+  padding: 5px !important;
+  width: 40px;
+  height: 143px;
+  text-align: center;
+}
 
+.mouth-table {
+  table-layout: fixed;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#toothEditorCanvas {
+  margin: 30px;
+}
