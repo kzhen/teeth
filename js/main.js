@@ -1,5 +1,5 @@
-var colorDecay = "#cb3594";
-var colorFilling = "#659b41";
+var colorFilling = "#cb3594";
+var colorDecay = "#659b41";
 
 var selectedColour = colorDecay;
 var clickColor = new Array();
