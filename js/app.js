@@ -96,8 +96,7 @@ var viewModel = {
 //};
 
 viewModel.mouth().createMouth();
-ko.applyBindings(viewModel, document.getElementById("firstVM"));
-//ko.applyBindings(mySecondViewModel, document.getElementById("secondVM"));
+ko.applyBindings(viewModel);
 viewModel.gotoView("exam");
 viewModel.selectedTooth();
 
