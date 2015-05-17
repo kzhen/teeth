@@ -34,12 +34,9 @@
                        optionsCaption: 'Choose...'"></select>
       </p>
 
-      <div data-bind="visible: selectedPatient">
-        <button data-bind="click: gotoView('exam')">Examination</button>
-        <button data-bind="click: gotoView('results')">Results</button>
-      </div>
 
       <div data-bind="visible: selectedPatient() && isSelected('exam')">
+        <h2 data-bind="text: mouth().dmtf()"></h2>
         <div class="row">
           <div class="col-md-12">
             <h2>Mouth Map</h2>
@@ -87,18 +84,12 @@
           </div>
         </div>
         <div class="row">
-          <button id="btnDecay">Decay</button>
-          <button id="btnFilling">Filling</button>
+          <button data-bind="click: addDecay" id="btnDecay">Decay</button>
+          <button data-bind="click: addFilling" id="btnFilling">Filling</button>
           <button data-bind="click: removeTooth" id="btnRemoveTooth">Remove Tooth</button>
         </div>
         <div class="row">
           <canvas id="toothEditorCanvas" width="35" height="143" style="border: 1px solid black"></canvas>
-        </div>
-      </div>
-      <div data-bind="visible: selectedPatient() && isSelected('results')">
-        <h2>Examination Results: <span data-bind="text: selectedPatient() ? selectedPatient().patientName: ''"></span></h2>
-        <div data-bind="foreach: mouth().mouthTop()">
-          <div data-bind="text: $data.present"></div>
         </div>
       </div>
     </div>
