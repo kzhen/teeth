@@ -3,7 +3,6 @@
 }
 
 body {
-  padding-top: 50px;
   padding-bottom: 20px;
 }
 
@@ -23,4 +22,40 @@ td {
 
 #toothEditorCanvas {
   margin: 30px;
+}
+
+#leftmouth, #rightmouth {
+  float: left;
+  width: 30%;
+}
+
+#tooth-editor {
+  background: white;
+  border: 1px solid silver;
+  width: 200px;
+  height: 443px;
+  float: left;
+}
+
+.row {
+  margin-left: 20px;
+}
+
+#our_navbar {
+  background-color: #47E6D1;
+  height: 75px;
+  margin-bottom: 30px;
+}
+
+#our_navbar > * {
+  float: left;
+}
+
+#our_navbar > h2 {
+  margin-left: 70px;
+  margin-top: 15px;
+}
+
+#our_navbar > img {
+  width: 100px;
 }

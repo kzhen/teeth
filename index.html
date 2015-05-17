@@ -19,47 +19,32 @@
 
   <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
-  <style>
-    #leftmouth, #rightmouth {
-      float: left;
-      width: 30%;
-    }
-
-    #tooth-editor {
-      background: white;
-      border: 1px solid silver;
-      width: 200px;
-      height: 443px;
-      float: left;
-    }
-
-    .row {
-      margin-left: 20px;
-    }
-  </style>
-
 </head>
 <body>
   <!--[if lt IE 8]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <div class="container">
-    <div id="firstVM">
-      <p>
+  <div id="our_navbar">
+      <img src="mouthmap-logo.png">
+      <h2>
         Patient:
         <select data-bind="options: availablePatients,
                        optionsText: 'patientName',
                        value: selectedPatient,
                        optionsCaption: 'Choose...'"></select>
-      </p>
+      </h2>
+        <h2>DMFT: <span data-bind="text: mouth().dmtf()"></span></h2>
+  </div>
+
+
+  <div class="container">
+    <div id="firstVM">
 
 
       <div data-bind="visible: selectedPatient() && isSelected('exam')">
-        <h2 data-bind="text: mouth().dmtf()"></h2>
         <div class="row">
           <div>
-            <h2>Mouth Map</h2>
             <table class="table table-bordered mouth-table" id="leftmouth">
               <tr>
                 <td><canvas data-bind="click: selectTooth('top', 1)" id="t1" class="tooth" width="53" height="215"></canvas></td>
