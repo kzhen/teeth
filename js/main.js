@@ -185,17 +185,21 @@ $("#btnRemoveTooth").click(function () {
   $(selectedTooth).hide();
 });
 
-$("#btnDone").click(function() {
-  $("#tooth-editor").hide();
-});
-
 $("#btnNext").click(function() {
-  var id = $(selectedTooth).attr("id").split("");
-  var idx;
-  if (id.length > 2) {
-    idx = parseInt(id[1]+id[2],10) + 1;
+  var selectedToothID = $(selectedTooth).attr("id");
+  var layer = selectedToothID.substr(0,1);
+
+  var nextTooth;
+
+  if (selectedToothID == "t16") {
+    nextTooth = "b1";
+  } else if (selectedToothID == "b16") {
+    nextTooth = "t1";
   } else {
-    idx = parseInt(id[1],10) + 1;
+    var idx = parseInt(selectedToothID.substr(1)) + 1;
+    nextTooth = layer + idx;
   }
-  $("#" + id[0] + idx).click();
+
+  $("#" + nextTooth).click();
+
 });
