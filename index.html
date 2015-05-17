@@ -17,60 +17,6 @@
   <link rel="stylesheet" href="css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="css/main.css">
 
-  <style>
-    .selectedTooth {
-      border: 2px solid blue;
-    }
-
-    body {
-      padding-top: 50px;
-      padding-bottom: 20px;
-    }
-
-    canvas.tooth {
-      margin-left: 35%;
-    }
-
-    td {
-      padding: 5px !important;
-      width: 40px;
-      height: 143px;
-      text-align: center;
-    }
-
-    .mouth-table {
-      table-layout: fixed;
-    }
-
-    #toothEditorCanvas {
-      margin: 30px;
-    }
-
-    .carousel-caption {
-      color: #000;
-    }
-
-    .carousel-indicators li {
-      border-color: #000;
-    }
-
-    .carousel-indicators .active {
-      background-color: #775577;
-    }
-
-    .btnControls {
-      border: 1px solid silver;
-      padding: 15px 5px 15px 5px;
-
-      margin-left: 15%;
-      margin-right: 15%;
-    }
-
-    .btnContols > button {
-      width: 80px;
-    }
-  </style>
-
   <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
 <body>
@@ -78,86 +24,96 @@
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-
   <div class="container">
-    <!-- Example row of columns -->
-    <div class="row">
-      <div class="col-md-12">
-        <h2>Mouth Map</h2>
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-          <!-- Indicators -->
-          <ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="4"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="5"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="6"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="7"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="8"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="9"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="10"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="11"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="12"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="13"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="14"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="15"></li>
-          </ol>
+    <div id="firstVM">
+      <p>
+        Patient:
+        <select data-bind="options: availablePatients,
+                       optionsText: 'patientName',
+                       value: selectedPatient,
+                       optionsCaption: 'Choose...'"></select>
+      </p>
 
-          <!-- Wrapper for slides -->
-          <div class="carousel-inner" role="listbox">
-            <div class="item active">
-              <canvas id="t1" class="tooth" height="368" width="90"></canvas>
-              <div class="carousel-caption">
-                U1
-              </div>
-            </div>
-            <div class="item">
-              <canvas id="t2" class="tooth" height="368" width="90"></canvas>
-              <div class="carousel-caption">
-                U2
-              </div>
-            </div>
+      <div data-bind="visible: selectedPatient">
+        <button data-bind="click: gotoView('exam')">Examination</button>
+        <button data-bind="click: gotoView('results')">Results</button>
+      </div>
 
-            <div class="item"><canvas id="t3" class="tooth" width="90" height="368"></canvas><div class="carousel-caption">U3</div></div>
-            <div class="item"><canvas id="t4" class="tooth" width="90" height="368"></canvas><div class="carousel-caption">U4</div></div>
-            <div class="item"><canvas id="t5" class="tooth" width="90" height="368"></canvas><div class="carousel-caption">U5</div></div>
-            <div class="item"><canvas id="t6" class="tooth" width="90" height="368"></canvas><div class="carousel-caption">U6</div></div>
-            <div class="item"><canvas id="t7" class="tooth" width="90" height="368"></canvas><div class="carousel-caption">U7</div></div>
-            <div class="item"><canvas id="t8" class="tooth" width="90" height="368"></canvas><div class="carousel-caption">U8</div></div>
-            <div class="item"><canvas id="t9" class="tooth" width="90" height="368"></canvas><div class="carousel-caption">U9</div></div>
-            <div class="item"><canvas id="t10" class="tooth" width="90" height="368"></canvas><div class="carousel-caption">U10</div></div>
-            <div class="item"><canvas id="t11" class="tooth" width="90" height="368"></canvas><div class="carousel-caption">U11</div></div>
-            <div class="item"><canvas id="t12" class="tooth" width="90" height="368"></canvas><div class="carousel-caption">U12</div></div>
-            <div class="item"><canvas id="t13" class="tooth" width="90" height="368"></canvas><div class="carousel-caption">U13</div></div>
-            <div class="item"><canvas id="t14" class="tooth" width="90" height="368"></canvas><div class="carousel-caption">U14</div></div>
-            <div class="item"><canvas id="t15" class="tooth" width="90" height="368"></canvas><div class="carousel-caption">U15</div></div>
-            <div class="item"><canvas id="t16" class="tooth" width="90" height="368"></canvas><div class="carousel-caption">U16</div></div>
-
-            <div class="btnControls">
-              <button type="button" class="btn btn-default" id="btnDecay">Decay</button>
-              <button type="button" class="btn btn-default" id="btnFilling">Filling</button>
-              <button type="button" class="btn btn-default" id="btnRemoveTooth">Absent</button>
-            </div>
-
+      <div data-bind="visible: selectedPatient() && isSelected('exam')">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Mouth Map</h2>
+            <table class="table table-bordered mouth-table">
+              <tr>
+                <td><canvas data-bind="click: selectTooth('top', 1)" id="t1" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 2)" id="t2" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 3)" id="t3" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 4)" id="t4" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 5)" id="t5" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 6)" id="t6" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 7)" id="t7" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 8)" id="t8" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 9)" id="t9" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 10)" id="t10" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 11)" id="t11" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 12)" id="t12" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 13)" id="t13" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 14)" id="t14" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 15)" id="t15" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 16)" id="t16" class="tooth" width="35" height="143"></canvas></td>
+              </tr>
+              <tr>
+                <td><canvas data-bind="click: selectTooth('bottom', 1)" id="b1" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 2)" id="b2" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 3)" id="b3" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 4)" id="b4" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 5)" id="b5" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 6)" id="b6" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 7)" id="b7" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 8)" id="b8" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 9)" id="b9" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 10)" id="b10" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 11)" id="b11" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 12)" id="b12" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 13)" id="b13" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 14)" id="b14" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 15)" id="b15" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 16)" id="b16" class="tooth" width="35" height="143"></canvas></td>
+              </tr>
+            </table>
           </div>
-
-          <!-- Controls -->
-          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
+          <div class="col-md-12">
+            <h2>Tooth</h2>
+          </div>
         </div>
-      </div> <!-- /container -->
+        <div class="row">
+          <button id="btnDecay">Decay</button>
+          <button id="btnFilling">Filling</button>
+          <button data-bind="click: removeTooth" id="btnRemoveTooth">Remove Tooth</button>
+        </div>
+        <div class="row">
+          <canvas id="toothEditorCanvas" width="35" height="143" style="border: 1px solid black"></canvas>
+        </div>
+      </div>
+      <div data-bind="visible: selectedPatient() && isSelected('results')">
+        <h2>Examination Results: <span data-bind="text: selectedPatient() ? selectedPatient().patientName: ''"></span></h2>
+        <div data-bind="foreach: mouth().mouthTop()">
+          <div data-bind="text: $data.present"></div>
+        </div>
+      </div>
     </div>
-  </div>
+
+    <div id="secondVM">
+      <span data-bind="text: something"></span>
+    </div>
+
+  </div> <!-- /container -->
   <script src="js/vendor/jquery-1.11.2.min.js"></script>
   <script src="js/vendor/bootstrap.min.js"></script>
-  <script src="js/main2.js"></script>
+  <script src="js/vendor/knockout.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/main.js"></script>
+
+
 </body>
 </html>
