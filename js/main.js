@@ -106,7 +106,7 @@ function loadCanvas(dataURL, id) {
   // load image from data url
   var imageObj = new Image();
   imageObj.onload = function () {
-    ctx.drawImage(this, 0, 0, 49, 200);
+    ctx.drawImage(this, 0, 0, 53, 215);
   };
 
   imageObj.src = dataURL;
@@ -157,7 +157,7 @@ function make_top_teeth(t) {
 
   var imageObj = new Image();
   imageObj.onload = function () {
-    ctx.drawImage(this, 0, 0, 49, 200);
+    ctx.drawImage(this, 0, 0, 53, 215);
   };
   imageObj.src = "teeth/t" + t + ".png";
 }
@@ -168,7 +168,7 @@ function make_bottom_teeth(b) {
 
   var imageObj = new Image();
   imageObj.onload = function () {
-    ctx.drawImage(this, 0, 0, 49, 200);
+    ctx.drawImage(this, 0, 0, 53, 215);
   };
   imageObj.src = "teeth/b" + b + ".png";
 }
