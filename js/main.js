@@ -5,53 +5,51 @@ var selectedColour = colorDecay;
 var clickColor = new Array();
 var selectedTooth;
 
-var editorContext = document.getElementById('toothEditorCanvas').getContext("2d");
-var editorCanvas = document.getElementById('toothEditorCanvas');
+var editorCanvas = document.getElementById('t1');
+var editorContext = editorCanvas.getContext("2d");
 
-$('#toothEditorCanvas').mousedown(function (e) {
-  var mouseX = e.pageX - this.offsetLeft;
-  var mouseY = e.pageY - this.offsetTop;
 
+$('.tooth').mousedown(function (e) {
   paint = true;
-  addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
+  addClick(e.pageX - this.offsetLeft - 15, e.pageY - this.offsetTop - 110);
   redraw();
 });
 
-$('#toothEditorCanvas').mousemove(function (e) {
+$('.tooth').mousemove(function (e) {
   if (paint) {
-    addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
+    addClick(e.pageX - this.offsetLeft - 15, e.pageY - this.offsetTop - 110, true);
     redraw();
   }
 });
 
-$('#toothEditorCanvas').mouseup(function (e) {
+$('.tooth').mouseup(function (e) {
   paint = false;
 });
 
-$('#toothEditorCanvas').mouseleave(function (e) {
+$('.tooth').mouseleave(function (e) {
   paint = false;
 });
 
 
-$('#toothEditorCanvas').on('touchstart', function (e) {
-  var mouseX = e.pageX - this.offsetLeft;
-  var mouseY = e.pageY - this.offsetTop;
+// $('#toothEditorCanvas').on('touchstart', function (e) {
+//   var mouseX = e.pageX - this.offsetLeft;
+//   var mouseY = e.pageY - this.offsetTop;
 
-  paint = true;
-  addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
-  redraw();
-});
+//   paint = true;
+//   addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
+//   redraw();
+// });
 
-$('#toothEditorCanvas').on('touchmove', function (e) {
-  if (paint) {
-    addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
-    redraw();
-  }
-});
+// $('#toothEditorCanvas').on('touchmove', function (e) {
+//   if (paint) {
+//     addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
+//     redraw();
+//   }
+// });
 
-$('#toothEditorCanvas').on('touchend', function (e) {
-  paint = false;
-});
+// $('#toothEditorCanvas').on('touchend', function (e) {
+//   paint = false;
+// });
 
 
 
@@ -91,9 +89,6 @@ function redraw() {
 
 function canvas_clear() {
   editorContext.clearRect(0, 0, editorCanvas.width, editorCanvas.height);
-  clickX = new Array();
-  clickY = new Array();
-  clickDrag = new Array();
 }
 
 function export_png() {
@@ -120,32 +115,32 @@ $("#btnFilling").click(function () {
   selectedColour = colorFilling;
 });
 
-$(".tooth").click(function () {
-  if (selectedTooth != undefined) {
-    // Push the current #canvas back into the mouth
-    loadCanvas(export_png(), $(selectedTooth).attr("id"));
-  }
+// $(".tooth").click(function () {
+//   if (selectedTooth != undefined) {
+//     // Push the current #canvas back into the mouth
+//     loadCanvas(export_png(), $(selectedTooth).attr("id"));
+//   }
 
-  $(selectedTooth).removeClass("selectedTooth");
-  $(this).addClass("selectedTooth");
+//   $(selectedTooth).removeClass("selectedTooth");
+//   $(this).addClass("selectedTooth");
 
-  // Copy whatever we've just clicked on into #canvas
-  canvas_clear();
+//   // Copy whatever we've just clicked on into #canvas
+//   canvas_clear();
 
-  var c = document.getElementById($(this).attr("id"));
-  var ctx = c.getContext("2d");
+//   var c = document.getElementById($(this).attr("id"));
+//   var ctx = c.getContext("2d");
 
-  var imgUrl = ctx.canvas.toDataURL();
+//   var imgUrl = ctx.canvas.toDataURL();
 
-  var imageObj = new Image();
-  imageObj.onload = function () {
-    editorContext.drawImage(this, 0, 0);
-  };
+//   var imageObj = new Image();
+//   imageObj.onload = function () {
+//     editorContext.drawImage(this, 0, 0);
+//   };
 
-  imageObj.src = imgUrl;
+//   imageObj.src = imgUrl;
 
-  selectedTooth = this;
-});
+//   selectedTooth = this;
+// });
 
 function make_top_teeth(t) {
   var c = document.getElementById("t" + t);
@@ -153,31 +148,34 @@ function make_top_teeth(t) {
 
   var imageObj = new Image();
   imageObj.onload = function () {
-    ctx.drawImage(this, 0, 0, 35, 143);
+    ctx.drawImage(this, 0, 0/*, 35, 143*/);
   };
   imageObj.src = "teeth/t" + t + ".png";
-}
-
-function make_bottom_teeth(b) {
-  var c = document.getElementById("b" + b);
-  var ctx = c.getContext("2d");
-
-  var imageObj = new Image();
-  imageObj.onload = function () {
-    ctx.drawImage(this, 0, 0, 35, 143);
-  };
-  imageObj.src = "teeth/b" + b + ".png";
 }
 
 $(document).ready(function () {
 
   for (var t = 1; t <= 16; t++) {
     make_top_teeth(t);
-    make_bottom_teeth(t);
   }
 });
 
 $("#btnRemoveTooth").click(function () {
-  $(selectedTooth).hide();
+  //$(selectedTooth).hide();
+
+});
+
+$('.carousel').carousel({
+  interval: false,
+});
+
+$('#carousel-example-generic').on('slid.bs.carousel', function (e) {
+  selectedToothID = $(".active canvas", e.target).attr("id");
+  editorCanvas = document.getElementById(selectedToothID);
+  editorContext = editorCanvas.getContext("2d");
+
+  clickX = new Array();
+  clickY = new Array();
+  clickDrag = new Array();
 });
 
