@@ -61,39 +61,35 @@
             <h2>Mouth Map</h2>
             <table class="table table-bordered mouth-table" id="leftmouth">
               <tr>
-                <td><canvas data-bind="click: selectTooth('top', 1)" id="t1" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 2)" id="t2" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 3)" id="t3" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 4)" id="t4" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 5)" id="t5" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 6)" id="t6" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 7)" id="t7" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 8)" id="t8" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 1)" id="t1" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 2)" id="t2" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 3)" id="t3" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 4)" id="t4" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 5)" id="t5" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 6)" id="t6" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 7)" id="t7" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 8)" id="t8" class="tooth" width="49" height="200"></canvas></td>
               </tr>
               <tr>
-                <td><canvas data-bind="click: selectTooth('bottom', 1)" id="b1" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('bottom', 2)" id="b2" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('bottom', 3)" id="b3" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('bottom', 4)" id="b4" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('bottom', 5)" id="b5" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('bottom', 6)" id="b6" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('bottom', 7)" id="b7" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('bottom', 8)" id="b8" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 1)" id="b1" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 2)" id="b2" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 3)" id="b3" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 4)" id="b4" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 5)" id="b5" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 6)" id="b6" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 7)" id="b7" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 8)" id="b8" class="tooth" width="49" height="200"></canvas></td>
               </tr>
             </table>
 
         <div id="tooth-editor">
-          <div class="col-md-12">
-            <h2>Tooth</h2>
-          </div>
-
           <div class="row">
             <button data-bind="click: addDecay" id="btnDecay">Decay</button>
             <button data-bind="click: addFilling" id="btnFilling">Filling</button>
             <button data-bind="click: removeTooth" id="btnRemoveTooth">Remove Tooth</button>
           </div>
           <div class="row">
-            <canvas id="toothEditorCanvas" width="35" height="143" style="border: 1px solid black"></canvas>
+            <canvas id="toothEditorCanvas" width="70" height="286" style="border: 1px solid black"></canvas>
           </div>
           <div class="row">
             <button id="btnNext">Next >></button>
@@ -104,24 +100,24 @@
 
             <table class="table table-bordered mouth-table" id="rightmouth">
               <tr>
-                <td><canvas data-bind="click: selectTooth('top', 9)" id="t9" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 10)" id="t10" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 11)" id="t11" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 12)" id="t12" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 13)" id="t13" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 14)" id="t14" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 15)" id="t15" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 16)" id="t16" class="tooth" width="35" height="143"></canvas></td>
+                  <td><canvas data-bind="click: selectTooth('top', 9)" id="t9" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 10)" id="t10" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 11)" id="t11" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 12)" id="t12" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 13)" id="t13" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 14)" id="t14" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 15)" id="t15" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 16)" id="t16" class="tooth" width="49" height="200"></canvas></td>
               </tr>
               <tr>
-                <td><canvas data-bind="click: selectTooth('bottom', 9)" id="b9" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('bottom', 10)" id="b10" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('bottom', 11)" id="b11" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('bottom', 12)" id="b12" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('bottom', 13)" id="b13" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('bottom', 14)" id="b14" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('bottom', 15)" id="b15" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('bottom', 16)" id="b16" class="tooth" width="35" height="143"></canvas></td>
+                  <td><canvas data-bind="click: selectTooth('bottom', 9)" id="b9" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 10)" id="b10" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 11)" id="b11" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 12)" id="b12" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 13)" id="b13" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 14)" id="b14" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 15)" id="b15" class="tooth" width="49" height="200"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('bottom', 16)" id="b16" class="tooth" width="49" height="200"></canvas></td>
                 </tr>
             </table>
 
