@@ -145,6 +145,10 @@ $(".tooth").click(function () {
   imageObj.src = imgUrl;
 
   selectedTooth = this;
+
+  // Show the tooth editor
+  $("#tooth-editor").show();
+
 });
 
 function make_top_teeth(t) {
@@ -181,3 +185,17 @@ $("#btnRemoveTooth").click(function () {
   $(selectedTooth).hide();
 });
 
+$("#btnDone").click(function() {
+  $("#tooth-editor").hide();
+});
+
+$("#btnNext").click(function() {
+  var id = $(selectedTooth).attr("id").split("");
+  var idx;
+  if (id.length > 2) {
+    idx = parseInt(id[1]+id[2],10) + 1;
+  } else {
+    idx = parseInt(id[1],10) + 1;
+  }
+  $("#" + id[0] + idx).click();
+});

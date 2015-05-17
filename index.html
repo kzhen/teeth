@@ -18,6 +18,25 @@
   <link rel="stylesheet" href="css/main.css">
 
   <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+  <style>
+
+  #leftmouth, #rightmouth {
+    float: left;
+    width: 30%;
+  }
+
+    #tooth-editor { 
+      background: white;
+      border: 1px solid silver; 
+      width: 200px;
+      float:left;
+    }
+    .row {
+      margin-left: 20px;
+    }
+  </style>
+
 </head>
 <body>
   <!--[if lt IE 8]>
@@ -41,9 +60,9 @@
 
       <div data-bind="visible: selectedPatient() && isSelected('exam')">
         <div class="row">
-          <div class="col-md-12">
+          <div>
             <h2>Mouth Map</h2>
-            <table class="table table-bordered mouth-table">
+            <table class="table table-bordered mouth-table" id="leftmouth">
               <tr>
                 <td><canvas data-bind="click: selectTooth('top', 1)" id="t1" class="tooth" width="35" height="143"></canvas></td>
                 <td><canvas data-bind="click: selectTooth('top', 2)" id="t2" class="tooth" width="35" height="143"></canvas></td>
@@ -53,14 +72,6 @@
                 <td><canvas data-bind="click: selectTooth('top', 6)" id="t6" class="tooth" width="35" height="143"></canvas></td>
                 <td><canvas data-bind="click: selectTooth('top', 7)" id="t7" class="tooth" width="35" height="143"></canvas></td>
                 <td><canvas data-bind="click: selectTooth('top', 8)" id="t8" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 9)" id="t9" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 10)" id="t10" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 11)" id="t11" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 12)" id="t12" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 13)" id="t13" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 14)" id="t14" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 15)" id="t15" class="tooth" width="35" height="143"></canvas></td>
-                <td><canvas data-bind="click: selectTooth('top', 16)" id="t16" class="tooth" width="35" height="143"></canvas></td>
               </tr>
               <tr>
                 <td><canvas data-bind="click: selectTooth('bottom', 1)" id="b1" class="tooth" width="35" height="143"></canvas></td>
@@ -71,6 +82,42 @@
                 <td><canvas data-bind="click: selectTooth('bottom', 6)" id="b6" class="tooth" width="35" height="143"></canvas></td>
                 <td><canvas data-bind="click: selectTooth('bottom', 7)" id="b7" class="tooth" width="35" height="143"></canvas></td>
                 <td><canvas data-bind="click: selectTooth('bottom', 8)" id="b8" class="tooth" width="35" height="143"></canvas></td>
+              </tr>
+            </table>
+
+        <div id="tooth-editor">
+          <div class="col-md-12">
+            <h2>Tooth</h2>
+          </div>
+
+          <div class="row">
+            <button id="btnDecay">Decay</button>
+            <button id="btnFilling">Filling</button>
+            <button data-bind="click: removeTooth" id="btnRemoveTooth">Remove Tooth</button>
+          </div>
+          <div class="row">
+            <canvas id="toothEditorCanvas" width="35" height="143" style="border: 1px solid black"></canvas>
+          </div>
+          <div class="row">
+            <button id="btnDone">Done</button>
+            <button id="btnNext">Next >></button>
+          </div>
+        </div>
+
+
+
+            <table class="table table-bordered mouth-table" id="rightmouth">
+              <tr>
+                <td><canvas data-bind="click: selectTooth('top', 9)" id="t9" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 10)" id="t10" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 11)" id="t11" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 12)" id="t12" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 13)" id="t13" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 14)" id="t14" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 15)" id="t15" class="tooth" width="35" height="143"></canvas></td>
+                <td><canvas data-bind="click: selectTooth('top', 16)" id="t16" class="tooth" width="35" height="143"></canvas></td>
+              </tr>
+              <tr>
                 <td><canvas data-bind="click: selectTooth('bottom', 9)" id="b9" class="tooth" width="35" height="143"></canvas></td>
                 <td><canvas data-bind="click: selectTooth('bottom', 10)" id="b10" class="tooth" width="35" height="143"></canvas></td>
                 <td><canvas data-bind="click: selectTooth('bottom', 11)" id="b11" class="tooth" width="35" height="143"></canvas></td>
@@ -79,22 +126,19 @@
                 <td><canvas data-bind="click: selectTooth('bottom', 14)" id="b14" class="tooth" width="35" height="143"></canvas></td>
                 <td><canvas data-bind="click: selectTooth('bottom', 15)" id="b15" class="tooth" width="35" height="143"></canvas></td>
                 <td><canvas data-bind="click: selectTooth('bottom', 16)" id="b16" class="tooth" width="35" height="143"></canvas></td>
-              </tr>
+                </tr>
             </table>
+
+
+
+
           </div>
-          <div class="col-md-12">
-            <h2>Tooth</h2>
-          </div>
         </div>
-        <div class="row">
-          <button id="btnDecay">Decay</button>
-          <button id="btnFilling">Filling</button>
-          <button data-bind="click: removeTooth" id="btnRemoveTooth">Remove Tooth</button>
-        </div>
-        <div class="row">
-          <canvas id="toothEditorCanvas" width="35" height="143" style="border: 1px solid black"></canvas>
-        </div>
+
       </div>
+
+
+
       <div data-bind="visible: selectedPatient() && isSelected('results')">
         <h2>Examination Results: <span data-bind="text: selectedPatient() ? selectedPatient().patientName: ''"></span></h2>
         <div data-bind="foreach: mouth().mouthTop()">
