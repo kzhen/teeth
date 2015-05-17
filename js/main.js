@@ -31,6 +31,7 @@ $('.tooth').mouseleave(function (e) {
 });
 
 
+/* Touch stuff needs fixing */
 // $('#toothEditorCanvas').on('touchstart', function (e) {
 //   var mouseX = e.pageX - this.offsetLeft;
 //   var mouseY = e.pageY - this.offsetTop;
@@ -87,14 +88,6 @@ function redraw() {
   }
 }
 
-function canvas_clear() {
-  editorContext.clearRect(0, 0, editorCanvas.width, editorCanvas.height);
-}
-
-function export_png() {
-  return editorContext.canvas.toDataURL();
-}
-
 function loadCanvas(dataURL, id) {
   var ctx = document.getElementById(id).getContext('2d');
 
@@ -115,33 +108,6 @@ $("#btnFilling").click(function () {
   selectedColour = colorFilling;
 });
 
-// $(".tooth").click(function () {
-//   if (selectedTooth != undefined) {
-//     // Push the current #canvas back into the mouth
-//     loadCanvas(export_png(), $(selectedTooth).attr("id"));
-//   }
-
-//   $(selectedTooth).removeClass("selectedTooth");
-//   $(this).addClass("selectedTooth");
-
-//   // Copy whatever we've just clicked on into #canvas
-//   canvas_clear();
-
-//   var c = document.getElementById($(this).attr("id"));
-//   var ctx = c.getContext("2d");
-
-//   var imgUrl = ctx.canvas.toDataURL();
-
-//   var imageObj = new Image();
-//   imageObj.onload = function () {
-//     editorContext.drawImage(this, 0, 0);
-//   };
-
-//   imageObj.src = imgUrl;
-
-//   selectedTooth = this;
-// });
-
 function make_top_teeth(t) {
   var c = document.getElementById("t" + t);
   var ctx = c.getContext("2d");
@@ -161,8 +127,7 @@ $(document).ready(function () {
 });
 
 $("#btnRemoveTooth").click(function () {
-  //$(selectedTooth).hide();
-
+  editorContext.clearRect(0, 0, editorCanvas.width, editorCanvas.height);
 });
 
 $('.carousel').carousel({
